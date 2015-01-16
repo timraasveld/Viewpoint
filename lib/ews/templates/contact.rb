@@ -54,8 +54,6 @@ module Viewpoint::EWS
               when :phone_numbers
                 item_parameters[key] = []
                 value.each do |phone_key, phone_number|
-                  ap phone_key
-                  ap phone_number
                   item_parameters[key] << { key: phone_key, text: phone_number }
                 end
               else
