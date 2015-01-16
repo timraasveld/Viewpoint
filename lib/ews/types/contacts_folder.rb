@@ -6,8 +6,8 @@ module Viewpoint::EWS::Types
 
     # Creates a new contact
     # @param attributes [Hash] Parameters of the contact. Some example attributes are listed below.
-    # @option attributes :first_name [String]
-    # @option attributes :last_name [String]
+    # @option attributes :given_name [String]
+    # @option attributes :surname [String]
     # @option attributes :email_addresses [Array]
     # @option attributes :phone_numbers [Array]
     # @return [Contact]
