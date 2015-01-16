@@ -53,6 +53,7 @@ module Viewpoint::EWS
                 item_parameters[:complete_name]['first_name'] = { text: value } if key == :given_name
                 item_parameters[:complete_name]['last_name'] = { text: value } if key == :surname
               when :email_addresses
+                item_parameters[key] = []
                 value.each do |email_key, email_address|
                   item_parameters[key] << { key: email_key, text: email_address }
                 end
