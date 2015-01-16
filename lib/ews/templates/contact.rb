@@ -35,6 +35,7 @@ module Viewpoint::EWS
       # @return [Hash]
       def to_ews_item
         item_parameters = {}
+        item_parameters[:complete_name] = []
         PARAMETERS.each do |key|
           if !(value = self.send(key)).nil?
 
