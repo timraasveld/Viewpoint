@@ -984,6 +984,28 @@ module Viewpoint::EWS::SOAP
       nbuild[NS_EWS_TYPES].ReminderMinutesBeforeStart minutes
     end
 
+    def file_as!(as)
+      nbuild[NS_EWS_TYPES].FileAs as
+    end
+
+    def given_name!(gn)
+      nbuild[NS_EWS_TYPES].GivenName gn
+    end
+
+    def company_name!(cn)
+      nbuild[NS_EWS_TYPES].CompanyName cn
+    end
+
+    def email_addresses(addresses)
+      nbuild[NS_EWS_TYPES].EmailAddresses {
+        addresses.each {|a| entry!(a)}
+      }
+    end
+
+    def entry(email)
+      nbuild[NS_EWS_TYPES].Entry email
+    end
+
     # @see http://msdn.microsoft.com/en-us/library/aa566143(v=exchg.150).aspx
     # possible values Exchange Server 2010 = [Free, Tentative, Busy, OOF, NoData]
     #                 Exchange Server 2013 = [Free, Tentative, Busy, OOF, WorkingElsewhere, NoData]
