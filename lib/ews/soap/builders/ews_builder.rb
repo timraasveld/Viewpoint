@@ -1000,8 +1000,28 @@ module Viewpoint::EWS::SOAP
       nbuild[NS_EWS_TYPES].CompanyName cn
     end
 
+    def street!(s)
+      nbuild[NS_EWS_TYPES].Street s
+    end
+
+    def city!(c)
+      nbuild[NS_EWS_TYPES].City c
+    end
+
+    def state!(s)
+      nbuild[NS_EWS_TYPES].State s
+    end
+
+    def country_or_region!(c)
+      nbuild[NS_EWS_TYPES].CountryOrRegion c
+    end
+
+    def postal_code!(pc)
+      nbuild[NS_EWS_TYPES].PostalCode pc
+    end
+
     def email_addresses!(addresses)
-      nbuild[NS_EWS_TYPES].EmailAddresses { |x|
+      nbuild[NS_EWS_TYPES].EmailAddresses {
         addresses.each {|address| entry!(address)}
       }
     end
@@ -1012,6 +1032,19 @@ module Viewpoint::EWS::SOAP
       }
     end
 
+    def physical_addresses!(addresses)
+      nbuild[NS_EWS_TYPES].PhysicalAddresses {
+        addresses.each {|address_key, address| 
+          nbuild[NS_EWS_TYPES].Entry(Key: address_key) {|x|
+            address[:text].each_pair{ |k,v|
+              self.send("#{k}!", v)
+            }
+          }
+        }
+      }
+    end
+
+    # Used by #email_addresses! and #phone_numbers!
     def entry!(value)
       nbuild[NS_EWS_TYPES].Entry(value[:text]) {|x|
         x.parent['Key'] = value[:key]
