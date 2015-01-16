@@ -831,7 +831,7 @@ module Viewpoint::EWS::SOAP
     end
 
     def contact!(item)
-      nbuild[NS_EWS_TYPES].CalendarItem {
+      nbuild[NS_EWS_TYPES].Contact {
         item.each_pair {|k,v|
           self.send("#{k}!", v)
         }
@@ -992,18 +992,30 @@ module Viewpoint::EWS::SOAP
       nbuild[NS_EWS_TYPES].GivenName gn
     end
 
+    def surname!(sn)
+      nbuild[NS_EWS_TYPES].Surname sn
+    end
+
     def company_name!(cn)
       nbuild[NS_EWS_TYPES].CompanyName cn
     end
 
-    def email_addresses(addresses)
-      nbuild[NS_EWS_TYPES].EmailAddresses {
-        addresses.each {|a| entry!(a)}
+    def email_addresses!(addresses)
+      nbuild[NS_EWS_TYPES].EmailAddresses { |x|
+        addresses.each {|address| entry!(address)}
       }
     end
 
-    def entry(email)
-      nbuild[NS_EWS_TYPES].Entry email
+    def phone_numbers!(phone_numbers)
+      nbuild[NS_EWS_TYPES].PhoneNumbers {
+        phone_numbers.each {|phone_number| entry!(phone_number)}
+      }
+    end
+
+    def entry!(value)
+      nbuild[NS_EWS_TYPES].Entry(value[:text]) {|x|
+        x.parent['Key'] = value[:key]
+      }
     end
 
     # @see http://msdn.microsoft.com/en-us/library/aa566143(v=exchg.150).aspx

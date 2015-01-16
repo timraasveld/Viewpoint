@@ -9,7 +9,10 @@ module Viewpoint::EWS::Types
     # @option attributes :given_name [String]
     # @option attributes :surname [String]
     # @option attributes :email_addresses [Array]
-    # @option attributes :phone_numbers [Array]
+    #
+    # @option attributes :phone_numbers [Array] 
+    # (see http://msdn.microsoft.com/en-us/library/office/aa565941(v=exchg.150).aspx)
+    #
     # @return [Contact]
     # @see Template::Contact
     def create_item(attributes, to_ews_create_opts = {})
