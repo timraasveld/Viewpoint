@@ -35,7 +35,7 @@ module Viewpoint::EWS
       # @return [Hash]
       def to_ews_item
         item_parameters = {}
-        item_parameters[:complete_name] = []
+        item_parameters[:complete_name] = {}
         PARAMETERS.each do |key|
           if !(value = self.send(key)).nil?
 
@@ -50,8 +50,8 @@ module Viewpoint::EWS
               when :given_name, :surname
                 # First and last name are stored twice. It is assumed "Full name" can be composed.
                 item_parameters[key] = { text: value }
-                item_parameters[:complete_name][:first_name] = { text: value } if key == :given_name
-                item_parameters[:complete_name][:last_name] = { text: value } if key == :surname
+                item_parameters[:complete_name].first_name = { text: value } if key == :given_name
+                item_parameters[:complete_name].last_name = { text: value } if key == :surname
               when :email_addresses
                 value.each do |email_key, email_address|
                   item_parameters[key] << { key: email_key, text: email_address }
