@@ -58,6 +58,7 @@ module Viewpoint::EWS
                   item_parameters[key] << { key: email_key, text: email_address }
                 end
               when :phone_numbers
+                item_parameters[key] = []
                 value.each do |phone_key, phone_number|
                   item_parameters[key] << { key: phone_key, text: phone_number }
                 end

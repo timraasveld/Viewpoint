@@ -830,6 +830,14 @@ module Viewpoint::EWS::SOAP
       }
     end
 
+    def contact!(item)
+      nbuild[NS_EWS_TYPES].CalendarItem {
+        item.each_pair {|k,v|
+          self.send("#{k}!", v)
+        }
+      }
+    end
+
     def task!(item)
       nbuild[NS_EWS_TYPES].Task {
         item.each_pair {|k,v|
