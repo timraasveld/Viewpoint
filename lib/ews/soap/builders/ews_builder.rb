@@ -996,6 +996,10 @@ module Viewpoint::EWS::SOAP
       nbuild[NS_EWS_TYPES].Surname sn
     end
 
+    def file_as_mapping!(fam)
+      nbuild[NS_EWS_TYPES].FileAsMapping = fam
+    end
+
     def company_name!(cn)
       nbuild[NS_EWS_TYPES].CompanyName cn
     end
