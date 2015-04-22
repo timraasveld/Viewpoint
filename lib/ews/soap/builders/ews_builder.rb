@@ -1048,6 +1048,10 @@ module Viewpoint::EWS::SOAP
       }
     end
 
+    def bussiness_home_page!(url)
+      nbuild[NS_EWS_TYPES].BussinessHomePage url
+    end
+
     # Used by #email_addresses! and #phone_numbers!
     def entry!(value)
       nbuild[NS_EWS_TYPES].Entry(value[:text]) {|x|
