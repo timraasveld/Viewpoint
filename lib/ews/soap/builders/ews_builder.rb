@@ -988,8 +988,8 @@ module Viewpoint::EWS::SOAP
       nbuild[NS_EWS_TYPES].FileAs as
     end
 
-    def notes!(notes)
-      nbuild[NS_EWS_TYPES].Notes notes
+    def body!(body)
+      nbuild[NS_EWS_TYPES].Notes body
     end
 
     def given_name!(gn)
