@@ -57,7 +57,7 @@ module Viewpoint::EWS
                   item_parameters[key] << { key: phone_key, text: phone_number }
                 end
               when :body
-                item_parameters[key] = {text: value, body_type: 'Best'}
+                item_parameters[key] = {text: value, body_type: 'HTML'}
               else
                 item_parameters[key] = value
             end
